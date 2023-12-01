@@ -123,9 +123,11 @@ func (c UserClient) register(info UserInfo) (string, model.UserEntity, error) {
 	if err == nil {
 		return "", nil, types.UserExistsErr
 	}
-	err = c.userRepo.GetUserByUsername(user)
-	if err == nil {
+	if user.GetUserName() != "" {
+	    err = c.userRepo.GetUserByUsername(user)
+	    if err == nil {
 		return "", nil, types.UserExistsErr
+	    }
 	}
 	err = c.userRepo.CreateUser(user)
 	if err != nil {
