@@ -27,7 +27,7 @@ func UserAuthGinMiddleware(decoder JwtEncoder) gin.HandlerFunc {
 			forbidden()
 			return
 		}
-		ctx.Set("userId", user.Id)
+		ctx.Set("user_id", user.Id)
 		ctx.Set("user", user)
 	}
 }
